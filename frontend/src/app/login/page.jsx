@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [loginData, setLoginData] = useState({
     email: '',
@@ -66,6 +67,30 @@ export default function LoginPage() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (!validateLogin()) return;
+    setLoading(true);
+
+    setTimeout(() => {
+      console.log('Login:', loginData);
+      alert('Login realizado!');
+      setLoading(false);
+    }, 2000);
+  };
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    if (!validateSignup()) return;
+    setLoading(true);
+
+    setTimeout(() => {
+      console.log('Cadastro:', signupData);
+      alert('Cadastro realizado!');
+      setLoading(false);
+    }, 2000);
+  };
+
   return (
     <div className="login-container">
       <div className="login-card">
@@ -93,7 +118,7 @@ export default function LoginPage() {
         </div>
 
         {isLogin ? (
-          <form className="login-form">
+          <form onSubmit={handleLogin} className="login-form">
             <div className="form-group">
               <label className="form-label">Email</label>
               <input
@@ -118,12 +143,12 @@ export default function LoginPage() {
               {errors.senha && <p className="error-message">{errors.senha}</p>}
             </div>
 
-            <button type="submit" className="btn-submit">
-              Entrar
+            <button type="submit" disabled={loading} className="btn-submit">
+              {loading ? 'Carregando...' : 'Entrar'}
             </button>
           </form>
         ) : (
-          <form className="login-form">
+          <form onSubmit={handleSignup} className="login-form">
             <div className="form-group">
               <label className="form-label">Nome Completo</label>
               <input
@@ -200,8 +225,8 @@ export default function LoginPage() {
               {errors.confirmarSenha && <p className="error-message">{errors.confirmarSenha}</p>}
             </div>
 
-            <button type="submit" className="btn-submit">
-              Criar Conta
+            <button type="submit" disabled={loading} className="btn-submit">
+              {loading ? 'Carregando...' : 'Criar Conta'}
             </button>
           </form>
         )}
