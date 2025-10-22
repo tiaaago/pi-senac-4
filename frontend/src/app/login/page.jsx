@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import './login.css';
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
