@@ -19,6 +19,53 @@ export default function LoginPage() {
     confirmarSenha: '',
   });
 
+  const [errors, setErrors] = useState({});
+
+  const isValidEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const isValidPassword = (password) => {
+    return password.length >= 8 && /[A-Za-z]/.test(password) && /[0-9]/.test(password);
+  };
+
+  const validateLogin = () => {
+    const newErrors = {};
+    if (!loginData.email) {
+      newErrors.email = 'Email obrigatorio';
+    } else if (!isValidEmail(loginData.email)) {
+      newErrors.email = 'Email invalido';
+    }
+    if (!loginData.senha) {
+      newErrors.senha = 'Senha obrigatoria';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const validateSignup = () => {
+    const newErrors = {};
+    if (!signupData.nome) newErrors.nome = 'Nome obrigatorio';
+    if (!signupData.email) {
+      newErrors.email = 'Email obrigatorio';
+    } else if (!isValidEmail(signupData.email)) {
+      newErrors.email = 'Email invalido';
+    }
+    if (!signupData.curso) newErrors.curso = 'Curso obrigatorio';
+    if (!signupData.semestre) newErrors.semestre = 'Semestre obrigatorio';
+    if (!signupData.senha) {
+      newErrors.senha = 'Senha obrigatoria';
+    } else if (!isValidPassword(signupData.senha)) {
+      newErrors.senha = 'Senha deve ter 8+ caracteres, 1 letra e 1 numero';
+    }
+    if (signupData.senha !== signupData.confirmarSenha) {
+      newErrors.confirmarSenha = 'As senhas nao coincidem';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   return (
     <div className="login-container">
       <div className="login-card">
@@ -32,13 +79,13 @@ export default function LoginPage() {
 
         <div className="login-tabs">
           <button
-            onClick={() => setIsLogin(true)}
+            onClick={() => { setIsLogin(true); setErrors({}); }}
             className={isLogin ? 'login-tab active' : 'login-tab'}
           >
             Entrar
           </button>
           <button
-            onClick={() => setIsLogin(false)}
+            onClick={() => { setIsLogin(false); setErrors({}); }}
             className={!isLogin ? 'login-tab active' : 'login-tab'}
           >
             Cadastrar
@@ -54,8 +101,9 @@ export default function LoginPage() {
                 placeholder="seu@email.com"
                 value={loginData.email}
                 onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                className="form-input"
+                className={errors.email ? 'form-input error' : 'form-input'}
               />
+              {errors.email && <p className="error-message">{errors.email}</p>}
             </div>
 
             <div className="form-group">
@@ -65,8 +113,9 @@ export default function LoginPage() {
                 placeholder="senha"
                 value={loginData.senha}
                 onChange={(e) => setLoginData({ ...loginData, senha: e.target.value })}
-                className="form-input"
+                className={errors.senha ? 'form-input error' : 'form-input'}
               />
+              {errors.senha && <p className="error-message">{errors.senha}</p>}
             </div>
 
             <button type="submit" className="btn-submit">
@@ -82,8 +131,9 @@ export default function LoginPage() {
                 placeholder="Seu nome"
                 value={signupData.nome}
                 onChange={(e) => setSignupData({ ...signupData, nome: e.target.value })}
-                className="form-input"
+                className={errors.nome ? 'form-input error' : 'form-input'}
               />
+              {errors.nome && <p className="error-message">{errors.nome}</p>}
             </div>
 
             <div className="form-group">
@@ -93,8 +143,9 @@ export default function LoginPage() {
                 placeholder="seu@email.com"
                 value={signupData.email}
                 onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
-                className="form-input"
+                className={errors.email ? 'form-input error' : 'form-input'}
               />
+              {errors.email && <p className="error-message">{errors.email}</p>}
             </div>
 
             <div className="form-grid">
@@ -105,8 +156,9 @@ export default function LoginPage() {
                   placeholder="Ex: Medicina"
                   value={signupData.curso}
                   onChange={(e) => setSignupData({ ...signupData, curso: e.target.value })}
-                  className="form-input"
+                  className={errors.curso ? 'form-input error' : 'form-input'}
                 />
+                {errors.curso && <p className="error-message">{errors.curso}</p>}
               </div>
 
               <div className="form-group">
@@ -118,8 +170,9 @@ export default function LoginPage() {
                   max="12"
                   value={signupData.semestre}
                   onChange={(e) => setSignupData({ ...signupData, semestre: e.target.value })}
-                  className="form-input"
+                  className={errors.semestre ? 'form-input error' : 'form-input'}
                 />
+                {errors.semestre && <p className="error-message">{errors.semestre}</p>}
               </div>
             </div>
 
@@ -130,8 +183,9 @@ export default function LoginPage() {
                 placeholder="senha"
                 value={signupData.senha}
                 onChange={(e) => setSignupData({ ...signupData, senha: e.target.value })}
-                className="form-input"
+                className={errors.senha ? 'form-input error' : 'form-input'}
               />
+              {errors.senha && <p className="error-message">{errors.senha}</p>}
             </div>
 
             <div className="form-group">
@@ -141,8 +195,9 @@ export default function LoginPage() {
                 placeholder="confirmar senha"
                 value={signupData.confirmarSenha}
                 onChange={(e) => setSignupData({ ...signupData, confirmarSenha: e.target.value })}
-                className="form-input"
+                className={errors.confirmarSenha ? 'form-input error' : 'form-input'}
               />
+              {errors.confirmarSenha && <p className="error-message">{errors.confirmarSenha}</p>}
             </div>
 
             <button type="submit" className="btn-submit">
