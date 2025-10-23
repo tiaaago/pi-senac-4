@@ -14,9 +14,22 @@
 .login-card {
   background: white;
   border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   padding: 40px;
   width: 100%;
   max-width: 480px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Header */
@@ -74,11 +87,17 @@
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-tab:hover {
+  color: #4a5568;
 }
 
 .login-tab.active {
   background: white;
   color: #667eea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Form */
@@ -106,15 +125,25 @@
   border-radius: 10px;
   font-size: 15px;
   color: #2d3748;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #cbd5e0;
 }
 
 .form-input:focus {
   border-color: #667eea;
-  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .form-input.error {
   border-color: #fc8181;
+}
+
+.form-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(252, 129, 129, 0.1);
 }
 
 /* Grid para curso e semestre */
@@ -141,10 +170,45 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
   margin-top: 10px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .btn-submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Responsividade */
+@media (max-width: 640px) {
+  .login-card {
+    padding: 30px 20px;
+  }
+
+  .login-title {
+    font-size: 24px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .login-card {
+    padding: 25px 15px;
+  }
 }
