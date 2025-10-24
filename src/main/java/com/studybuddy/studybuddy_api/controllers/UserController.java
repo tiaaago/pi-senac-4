@@ -76,19 +76,23 @@ public class UserController {
 
     //editar perfil do usuario
     @PutMapping("/{email}")
-    public ResponseEntity<?> editarUsuario (@PathVariable String email, @RequestBody User novosDados){
-        Optional<User> UserOpt = userService.findByEmail(email);
+    public ResponseEntity<?> editarUsuario(@PathVariable String email, @RequestBody UserUpdateDTO novosDados) {
+        Optional<User> userOpt = userService.findByEmail(email);
 
-        if (UserOpt.isPresent()) {
-            User user = UserOpt.get();
-            user.setNome(novosDados.getNome());
-            user.setCurso(novosDados.getCurso());
-            user.setSemestre(novosDados.getSemestre());
-            user.setXp(novosDados.getXp());
-            return ResponseEntity.ok(userService.salvarUsuario(novosDados));
-        } else {
+        if (userOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao encontrado");
         }
+
+        User user = userOpt.get();
+
+        user.setNome(novosDados.getNome());
+        user.setCurso(novosDados.getCurso());
+        user.setSemestre(novosDados.getSemestre());
+        user.setXp(novosDados.getXp());
+
+        User atualizado = userService.salvarUsuario(user);
+        return ResponseEntity.ok(new UserDTO(atualizado));
+
     }
 
     //listar todos usuarios

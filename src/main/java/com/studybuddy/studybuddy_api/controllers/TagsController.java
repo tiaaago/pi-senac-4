@@ -1,6 +1,7 @@
 package com.studybuddy.studybuddy_api.controllers;
 
 import com.studybuddy.studybuddy_api.dto.TagsDTO;
+import com.studybuddy.studybuddy_api.dto.TagsUpdateDTO;
 import com.studybuddy.studybuddy_api.models.Tags;
 import com.studybuddy.studybuddy_api.services.TagsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,27 @@ public class TagsController {
         Tags novaTag = tagsService.salvar(tag);
         return ResponseEntity.status(201).body(novaTag);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarTag(@PathVariable UUID id, @RequestBody TagsUpdateDTO novosDados) {
+        Optional<Tags> tagOpt = tagsService.buscarPorId(id);
+
+        if (tagOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("Tag não encontrada.");
+        }
+
+        Tags tag = tagOpt.get();
+
+        tag.setPomodoro(novosDados.isPomodoro());
+        tag.setMapaMental(novosDados.isMapaMental());
+        tag.setGrupoGrande(novosDados.isGrupoGrande());
+        tag.setGrupoPequeno(novosDados.isGrupoPequeno());
+        tag.setDuo(novosDados.isDuo());
+
+        Tags atualizada = tagsService.salvar(tag);
+        return ResponseEntity.ok(new TagsDTO(atualizada));
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable UUID id) {

@@ -27,11 +27,13 @@ public class BadgesController {
     @Autowired
     private BadgesService badgesService;
 
+    /*
+    Decidi que a badge será automaticamente definida de acordo com o xp
     @PostMapping
     public ResponseEntity<Badges> criarBadge(@RequestBody Badges badge) {
-        Badges novaBadge = badgesService.salvar(badge);
-        return ResponseEntity.status(201).body(novaBadge);
-    }
+       Badges novaBadge = badgesService.salvar(badge);
+       return ResponseEntity.status(201).body(novaBadge);
+     }*/
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable UUID id) {

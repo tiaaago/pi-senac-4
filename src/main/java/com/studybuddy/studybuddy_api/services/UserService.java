@@ -18,11 +18,19 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BadgesService badgesService;
+
+
     //Criar usuário
     public User salvarUsuario(User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setSenha(encoder.encode(user.getSenha())); //criptografa a senha
-        return userRepository.save(user);
+
+        User salvo = userRepository.save(user);
+        badgesService.atualizarBadgesPorXp(salvo);
+
+        return salvo;
     }
 
     public Optional<User> autenticar(String email, String senhaDigitada){
