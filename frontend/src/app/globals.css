@@ -1,3 +1,18 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-[#F8FAFC] text-gray-800 antialiased;
+}
+
+/* Transições suaves */
+* {
+  @apply transition-all duration-200;
+}
+
+
+
+
+/* 
 :root {
     --background: #ffffff;
     --foreground: #171717;
@@ -29,7 +44,7 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
-}
+  html {
+    color-scheme: dark;
+  }
+} */
