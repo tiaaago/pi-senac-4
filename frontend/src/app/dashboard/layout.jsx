@@ -1,11 +1,10 @@
 // app/dashboard/layout.js
 'use client' 
-import { useState } from 'react'
-import Sidebar from '@/app/components/Sidebar'
-import Header from '@/app/components/Header'
+import React, { useState } from 'react';
+import Sidebar from '@/app/components/Sidebar';
+import Header from '@/app/components/Header';
 
 export default function DashboardLayout({ children }) {
-
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (

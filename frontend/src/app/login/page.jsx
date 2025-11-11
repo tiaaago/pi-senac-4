@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import './login.css';
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -29,6 +28,7 @@ export default function LoginPage() {
   };
 
   const isValidPassword = (password) => {
+    // 8+ caracteres, 1 letra, 1 numero
     return password.length >= 8 && /[A-Za-z]/.test(password) && /[0-9]/.test(password);
   };
 
@@ -92,103 +92,132 @@ export default function LoginPage() {
     }, 2000);
   };
 
+  const inputClasses = (key) =>
+    `w-full p-3.5 border-2 rounded-xl text-gray-800 transition duration-300 focus:outline-none 
+    ${errors[key]
+      ? 'border-red-400 focus:ring-4 focus:ring-red-100'
+      : 'border-gray-200 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100'
+    }`;
+
+  const tabClasses = (isActive) =>
+    `flex-1 py-3 px-5 border-none bg-transparent text-sm font-semibold rounded-lg cursor-pointer transition duration-300 
+    ${isActive
+      ? 'bg-white text-indigo-500 shadow-md'
+      : 'text-gray-500 hover:text-gray-700'
+    }`;
+
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="login-header">
-          <div className="login-logo">
-            <span>SB</span>
+    // Container principal - Fundo com gradiente e centralização (simulando 100vh e bg-gradient)
+    <div className="min-h-screen flex items-center justify-center p-5 bg-gradient-to-br from-black to-blue-700">
+      
+      {/* Card do Login - max-width, sombra e animação (simulando fadeInUp) */}
+      <div className="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-lg animate-fade-in-up">
+        
+        {/* Header */}
+        <div className="text-center mb-8">
+          
+          {/* Logo - Gradiente roxo/azul */}
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full mb-3 shadow-lg">
+            <span className="text-white text-3xl font-bold">SB</span>
           </div>
-          <h1 className="login-title">StudyBuddy</h1>
-          <p className="login-subtitle">Nunca mais estude sozinho</p>
+          
+          <h1 className="text-3xl font-extrabold text-gray-800 mb-2">StudyBuddy</h1>
+          <p className="text-sm text-gray-500">Nunca mais estude sozinho</p>
         </div>
 
-        <div className="login-tabs">
+        {/* Tabs */}
+        <div className="flex gap-2.5 mb-7 bg-gray-50 p-1.5 rounded-xl">
           <button
             onClick={() => { setIsLogin(true); setErrors({}); }}
-            className={isLogin ? 'login-tab active' : 'login-tab'}
+            className={tabClasses(isLogin)}
           >
             Entrar
           </button>
           <button
             onClick={() => { setIsLogin(false); setErrors({}); }}
-            className={!isLogin ? 'login-tab active' : 'login-tab'}
+            className={tabClasses(!isLogin)}
           >
             Cadastrar
           </button>
         </div>
 
         {isLogin ? (
-          <form onSubmit={handleLogin} className="login-form">
-            <div className="form-group">
-              <label className="form-label">Email</label>
+          <form onSubmit={handleLogin} className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-800">Email</label>
               <input
                 type="email"
                 placeholder="seu@email.com"
                 value={loginData.email}
                 onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                className={errors.email ? 'form-input error' : 'form-input'}
+                className={inputClasses('email')}
               />
-              {errors.email && <p className="error-message">{errors.email}</p>}
+              {errors.email && <p className="text-xs text-red-500 mt-[-4px]">{errors.email}</p>}
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Senha</label>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-800">Senha</label>
               <input
                 type="password"
                 placeholder="senha"
                 value={loginData.senha}
                 onChange={(e) => setLoginData({ ...loginData, senha: e.target.value })}
-                className={errors.senha ? 'form-input error' : 'form-input'}
+                className={inputClasses('senha')}
               />
-              {errors.senha && <p className="error-message">{errors.senha}</p>}
+              {errors.senha && <p className="text-xs text-red-500 mt-[-4px]">{errors.senha}</p>}
             </div>
 
-            <button type="submit" disabled={loading} className="btn-submit">
+            {/* Botão Submit */}
+            <button 
+              type="submit" 
+              disabled={loading} 
+              className="mt-2 py-3.5 px-5 bg-gradient-to-br from-indigo-500 to-purple-600 text-white border-none rounded-xl text-base font-semibold cursor-pointer transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-xl hover:shadow-indigo-200 disabled:opacity-60 disabled:cursor-not-allowed"
+            >
               {loading ? 'Carregando...' : 'Entrar'}
             </button>
           </form>
         ) : (
-          <form onSubmit={handleSignup} className="login-form">
-            <div className="form-group">
-              <label className="form-label">Nome Completo</label>
+          <form onSubmit={handleSignup} className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-800">Nome Completo</label>
               <input
                 type="text"
                 placeholder="Seu nome"
                 value={signupData.nome}
                 onChange={(e) => setSignupData({ ...signupData, nome: e.target.value })}
-                className={errors.nome ? 'form-input error' : 'form-input'}
+                className={inputClasses('nome')}
               />
-              {errors.nome && <p className="error-message">{errors.nome}</p>}
+              {errors.nome && <p className="text-xs text-red-500 mt-[-4px]">{errors.nome}</p>}
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Email</label>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-800">Email</label>
               <input
                 type="email"
                 placeholder="seu@email.com"
                 value={signupData.email}
                 onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
-                className={errors.email ? 'form-input error' : 'form-input'}
+                className={inputClasses('email')}
               />
-              {errors.email && <p className="error-message">{errors.email}</p>}
+              {errors.email && <p className="text-xs text-red-500 mt-[-4px]">{errors.email}</p>}
             </div>
 
-            <div className="form-grid">
-              <div className="form-group">
-                <label className="form-label">Curso</label>
+            {/* Form Grid (Curso e Semestre) - usa 'md:grid-cols-2' para responsividade */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-semibold text-gray-800">Curso</label>
                 <input
                   type="text"
                   placeholder="Ex: Medicina"
                   value={signupData.curso}
                   onChange={(e) => setSignupData({ ...signupData, curso: e.target.value })}
-                  className={errors.curso ? 'form-input error' : 'form-input'}
+                  className={inputClasses('curso')}
                 />
-                {errors.curso && <p className="error-message">{errors.curso}</p>}
+                {errors.curso && <p className="text-xs text-red-500 mt-[-4px]">{errors.curso}</p>}
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Semestre</label>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-semibold text-gray-800">Semestre</label>
                 <input
                   type="number"
                   placeholder="1-12"
@@ -196,37 +225,42 @@ export default function LoginPage() {
                   max="12"
                   value={signupData.semestre}
                   onChange={(e) => setSignupData({ ...signupData, semestre: e.target.value })}
-                  className={errors.semestre ? 'form-input error' : 'form-input'}
+                  className={inputClasses('semestre')}
                 />
-                {errors.semestre && <p className="error-message">{errors.semestre}</p>}
+                {errors.semestre && <p className="text-xs text-red-500 mt-[-4px]">{errors.semestre}</p>}
               </div>
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Senha</label>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-800">Senha</label>
               <input
                 type="password"
                 placeholder="senha"
                 value={signupData.senha}
                 onChange={(e) => setSignupData({ ...signupData, senha: e.target.value })}
-                className={errors.senha ? 'form-input error' : 'form-input'}
+                className={inputClasses('senha')}
               />
-              {errors.senha && <p className="error-message">{errors.senha}</p>}
+              {errors.senha && <p className="text-xs text-red-500 mt-[-4px]">{errors.senha}</p>}
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Confirmar Senha</label>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-gray-800">Confirmar Senha</label>
               <input
                 type="password"
                 placeholder="confirmar senha"
                 value={signupData.confirmarSenha}
                 onChange={(e) => setSignupData({ ...signupData, confirmarSenha: e.target.value })}
-                className={errors.confirmarSenha ? 'form-input error' : 'form-input'}
+                className={inputClasses('confirmarSenha')}
               />
-              {errors.confirmarSenha && <p className="error-message">{errors.confirmarSenha}</p>}
+              {errors.confirmarSenha && <p className="text-xs text-red-500 mt-[-4px]">{errors.confirmarSenha}</p>}
             </div>
 
-            <button type="submit" disabled={loading} className="btn-submit">
+            {/* Botão Submit */}
+            <button 
+              type="submit" 
+              disabled={loading} 
+              className="mt-2 py-3.5 px-5 bg-gradient-to-br from-indigo-500 to-purple-600 text-white border-none rounded-xl text-base font-semibold cursor-pointer transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-xl hover:shadow-indigo-200 disabled:opacity-60 disabled:cursor-not-allowed"
+            >
               {loading ? 'Carregando...' : 'Criar Conta'}
             </button>
           </form>
