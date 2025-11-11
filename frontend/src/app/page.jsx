@@ -2,6 +2,7 @@
 import { FaHeart } from "react-icons/fa";
 import { LuArrowRight, LuCalendar, LuClock4, LuDownload, LuHeart, LuMenu, LuMessageCircle, LuShield, LuSparkles, LuStar, LuTarget, LuTrophy, LuUsers, LuX, LuZap } from "react-icons/lu";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
     const [isOpen, setOpen] = useState(false)
