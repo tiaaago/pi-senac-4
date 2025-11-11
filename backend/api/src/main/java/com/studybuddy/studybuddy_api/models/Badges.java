@@ -1,5 +1,6 @@
 package com.studybuddy.studybuddy_api.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,7 @@ public class Badges {
 
     @OneToOne
     @JoinColumn(name="user_id")
+    @JsonBackReference
     private User user;
 
     private boolean bronze;

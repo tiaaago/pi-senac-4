@@ -53,13 +53,10 @@ public class UserController {
     //get usuario
     @GetMapping("/{email}")
     public ResponseEntity<?> buscarporEmail(@PathVariable String email) {
-        Optional<User> user = userService.findByEmail(email);
+        return userService.findByEmail(email)
+                .<ResponseEntity<?>>map(user -> ResponseEntity.ok(new UserDTO(user)))
+                .orElseGet(()-> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado."));
 
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao encontrado");
-        }
     }
 
     //deletar usuario
