@@ -7,8 +7,8 @@ import Button from '@/app/components/Button'
 // Item de Grupo
 function MyGroupItem({ nome, membros, tag }) {
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 border-b border-gray-100 last:border-b-0">
-      <div>
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4 border-b border-gray-100 last:border-b-0 last:pb-0 first:pt-0">
+      <div> 
         <span className="text-xs font-semibold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full">{tag}</span>
         <p className="font-semibold text-gray-800 mt-1">{nome}</p>
         <p className="text-sm text-gray-500">{membros} membros</p>

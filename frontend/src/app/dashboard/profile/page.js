@@ -14,19 +14,19 @@ export default function ProfilePage() {
           {/* Grupo de Formulário */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
-            <Input type="text" value="Aghata Nunes" />
+            <Input type="text" defaultValue="Aghata Nunes" />
           </div>
 
           {/* Grupo de Formulário */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <Input type="email" value="aghata.nunes@floptock.com" />
+            <Input type="email" defaultValue="aghata.nunes@floptock.com" />
           </div>
 
           {/* Grupo de Formulário */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Curso</label>
-            <Input type="text" value="Sistemas de Informação" />
+            <Input type="text" defaultValue="Sistemas de Informação" />
           </div>
 
           {/* Grupo de Formulário */}

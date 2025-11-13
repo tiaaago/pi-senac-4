@@ -273,7 +273,7 @@ export default function Home() {
                                         <LuStar className="text-xl text-pink-600 fill-pink-600" />
                                     </div>
                                     <p className="text-gray-500 italic">"O StudyBuddy mudou completamente minha forma de estudar. Encontrei um grupo incrível de colegas e minhas notas melhoraram muito!"</p>
-                                    <p className="text-gray-500 font-semibold">— Ana Silva, Engenharia/USP</p>
+                                    <p className="text-gray-500 font-semibold">— Vinicius Quintanilha, Biologia/UniRio</p>
                                 </div>
                                 {/* Depoimento 2 */}
                                 <div className="flex flex-col items-start gap-4 p-7 border-2 border-gray-200 rounded-3xl transition duration-200 hover:border-pink-600/60 hover:shadow-xl hover:shadow-black/10">
@@ -285,7 +285,7 @@ export default function Home() {
                                         <LuStar className="text-xl text-pink-600 fill-pink-600" />
                                     </div>
                                     <p className="text-gray-500 italic">"Finalmente consegui encontrar pessoas com os mesmos objetivos. As sessões de estudo ficaram muito mais produtivas e divertidas."</p>
-                                    <p className="text-gray-500 font-semibold">— Carlos Mendes, Medicina/UFMG</p>
+                                    <p className="text-gray-500 font-semibold">— Marcos Aurélio, Marketing/UFSP</p>
                                 </div>
                                 {/* Depoimento 3 */}
                                 <div className="flex flex-col items-start gap-4 p-7 border-2 border-gray-200 rounded-3xl transition duration-200 hover:border-pink-600/60 hover:shadow-xl hover:shadow-black/10">
@@ -297,7 +297,7 @@ export default function Home() {
                                         <LuStar className="text-xl text-pink-600 fill-pink-600" />
                                     </div>
                                     <p className="text-gray-500 italic">"Incrível como é fácil encontrar study buddies que realmente se comprometem. Recomendo para todos os estudantes!"</p>
-                                    <p className="text-gray-500 font-semibold">— Juliana Costa, Direito/PUC</p>
+                                    <p className="text-gray-500 font-semibold">— Lucas Kauã, Artes Cênicas/UFPE</p>
                                 </div>
                             </div>
                         </div>

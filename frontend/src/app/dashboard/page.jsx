@@ -19,14 +19,11 @@ function StatCard({ icon: Icon, label, value }) {
 
 function GroupItem({ nome, membros, data }) {
   return (
-    <div className="bg-white border border-gray-100 shadow-sm rounded-xl p-5 flex items-center justify-between
-    flex flex-col sm:flex-row items-start sm:items-center 
-                    justify-between gap-4">
+    <div className="bg-white border border-gray-100 shadow-sm rounded-xl p-5 flex items-center justify-between flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div>
         <p className="font-semibold text-gray-800">{nome}</p>
         <p className="flex flex-col sm:flex-row text-sm text-gray-500 gap-x-2">
-          <span className="hidden sm:inline">·</span>
-          <span>Próxima reunião:{membros} membros · Próxima reunião: {data}</span>
+          <span>Próxima reunião: {membros} membros — {data}</span>
         </p>
       </div>
       {/* Botão secundário (sutil) */}

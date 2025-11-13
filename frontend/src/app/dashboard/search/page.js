@@ -10,7 +10,7 @@ import { Search, UserPlus } from 'lucide-react'
 // Item de Resultado da Busca
 function SearchResultItem({ nome, membros, curso }) {
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 border-b border-gray-100 last:border-b-0">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-5 border-b border-gray-100 last:border-b-0">
       <div>
         <p className="font-semibold text-gray-800">{nome}</p>
         <p className="text-sm text-gray-500">{membros} membros · {curso}</p>
@@ -31,11 +31,11 @@ export default function SearchPage() {
       <PageHeader title="Buscar Grupos" />
       <Card>
         {/* Formulário de Busca */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <Input
             type="text"
             placeholder="Buscar por matéria, curso ou nome..."
-            value={searchTerm}
+            defaultValue={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <Button className="w-full sm:w-auto flex items-center justify-center gap-2">
@@ -45,7 +45,7 @@ export default function SearchPage() {
         </div>
 
         {/* Resultados */}
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Resultados da Busca</h3>
+        <h3 className="text-lg font-semibold text-gray-800">Resultados da Busca</h3>
         <div className="divide-y divide-gray-100">
           <SearchResultItem nome="Clube do Hardware" membros={25} curso="Eng. Computação" />
           <SearchResultItem nome="Fisiologia Humana" membros={42} curso="Medicina" />

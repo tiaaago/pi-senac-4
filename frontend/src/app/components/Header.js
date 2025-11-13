@@ -32,9 +32,9 @@ export default function Header({ onOpenSidebar }) {
           <div className="flex items-center gap-3">
             <Image src={user} alt="User" width={36} height={36} className="rounded-full border border-gray-200" />
             {/* Infos do usuário escondidas em telas pequenas */}
-            <div className="text-sm leading-tight hidden sm:block">
-              <p className="font-medium text-gray-800">Aghata Nunes</p>
-              <p className="text-black-1000 text-xs">FLOPTOCK</p>
+            <div className="text-sm leading-tight hidden sm:block pr-3">
+              <p className="font-medium text-white">Aghata Nunes</p>
+              <p className="text-white text-xs">FLOPTOCK</p>
             </div>
           </div>
         </div>

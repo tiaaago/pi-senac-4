@@ -6,7 +6,7 @@ import { Calendar as CalendarIcon } from 'lucide-react'
 // Item de Evento
 function EventItem({ data, titulo, grupo }) {
   return (
-    <div className="flex items-start gap-4 p-5 border-b border-gray-100 last:border-b-0">
+    <div className="flex items-start gap-4 py-5 border-b border-gray-100 last:border-b-0">
       <div className="flex flex-col items-center justify-center px-4 py-2 rounded-lg bg-gray-100">
         <span className="text-sm font-bold text-gray-700">{data.dia}</span>
         <span className="text-xs font-semibold text-gray-500 uppercase">{data.mes}</span>
@@ -27,7 +27,7 @@ export default function CalendarPage() {
     <div>
       <PageHeader title="Calendário" />
       <Card>
-        <h3 className="text-lg font-semibold text-gray-800 mb-4 px-5">Próximos Eventos</h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-2">Próximos Eventos</h3>
         <div className="divide-y divide-gray-100">
           <EventItem data={{ dia: '25', mes: 'OUT' }} titulo="Prova de Cálculo II" grupo="Matemática Avançada" />
           <EventItem data={{ dia: '26', mes: 'OUT' }} titulo="Entrega do Projeto" grupo="Programação Web" />
