@@ -45,4 +45,8 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Badges badges;
+    
+    @ManyToMany(mappedBy = "membros")
+    @JsonBackReference
+    private List<Groups> groups = new ArrayList<>();
 }
