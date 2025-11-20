@@ -1,13 +1,27 @@
 package com.studybuddy.studybuddy_api.models;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
-
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -28,7 +42,7 @@ public class Groups {
     @Column(name = "quantida_de_membros", nullable = false)
     private Integer quantidadeDeMembros;
 
-    @ManytoMany
+    @ManyToMany
     @JsonManagedReference
     @JoinTable(
     name = "grupo_membros",

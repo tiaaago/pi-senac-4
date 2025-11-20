@@ -1,18 +1,19 @@
 package com.studybuddy.studybuddy_api.controllers;
 
-import com.studybuddy.studybuddy_api.dtos.GroupMembersDTO;
-import com.studybuddy.studybuddy_api.models.Groups;
-import com.studybuddy.studybuddy_api.models.User;
-import com.studybuddy.studybuddy_api.repositories.GroupsRepository;
-import com.studybuddy.studybuddy_api.repositories.UserRepository;
-import com.studybuddy.studybuddy_api.services.GroupsService;
+import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-import java.util.List;
+import com.studybuddy.studybuddy_api.dto.GroupMembersDTO;
+import com.studybuddy.studybuddy_api.models.Groups;
+import com.studybuddy.studybuddy_api.models.User;
+import com.studybuddy.studybuddy_api.repositories.UserRepository;
+
+import com.studybuddy.studybuddy_api.repositories.GroupsRepository;
+import com.studybuddy.studybuddy_api.services.GroupsService;
 
 @RestController
 @RequestMapping("/api/groups")
