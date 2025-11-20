@@ -48,6 +48,4 @@ public class TagsService {
     public Optional<Tags> buscarPorEmailUnico(String email) {
         return tagsRepository.findByUserEmail(email).stream().findFirst();
     }
-
-
 }

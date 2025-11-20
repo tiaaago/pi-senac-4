@@ -54,7 +54,7 @@ public class UserController {
     @GetMapping("/{email}")
     public ResponseEntity<?> buscarporEmail(@PathVariable String email) {
         return userService.findByEmail(email)
-                .<ResponseEntity<?>>map(user -> ResponseEntity.ok(new UserDTO(user)))
+                .<ResponseEntity<?>>map(user -> ResponseEntity.ok(user))
                 .orElseGet(()-> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado."));
 
     }

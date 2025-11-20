@@ -16,7 +16,6 @@ import java.util.UUID;
 @Table(name="users")
 @Entity
 public class User {
-
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private UUID id;
@@ -24,10 +23,10 @@ public class User {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "senha")
+    @Column(name = "senha", nullable = false)
     private String senha;
 
     @Column(name = "curso")
@@ -43,9 +42,7 @@ public class User {
     @JsonManagedReference
     private Tags tags;
 
-
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Badges badges;
-
 }
