@@ -64,6 +64,5 @@ public class User {
     @ManyToMany(mappedBy = "membros")
     //@JsonBackReference
     @JsonIgnore
-    @JsonIgnore
     private List<Groups> groups = new ArrayList<>();
 }
