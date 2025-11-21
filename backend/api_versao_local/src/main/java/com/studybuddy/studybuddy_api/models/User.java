@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -63,6 +63,7 @@ public class User {
     
     @ManyToMany(mappedBy = "membros")
     //@JsonBackReference
+    @JsonIgnore
     @JsonIgnore
     private List<Groups> groups = new ArrayList<>();
 }
