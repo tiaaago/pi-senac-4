@@ -43,7 +43,8 @@ public class Groups {
     private Integer quantidadeDeMembros;
 
     @ManyToMany
-    @JsonManagedReference
+    //@JsonManagedReference
+    @JsonIgnore
     @JoinTable(
     name = "grupo_membros",
     joinColumns = @JoinColumn(name = "grupo_id"),
