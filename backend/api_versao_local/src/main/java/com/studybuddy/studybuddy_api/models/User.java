@@ -62,6 +62,7 @@ public class User {
     private Badges badges;
     
     @ManyToMany(mappedBy = "membros")
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonIgnore
     private List<Groups> groups = new ArrayList<>();
 }
