@@ -17,65 +17,84 @@ import com.studybuddy.studybuddy_api.repositories.UserRepository;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
-
 @Service
 public class GroupsService {
-    @Autowired
-    private GroupsRepository groupsRepository;
+        @Autowired
+        private GroupsRepository groupsRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+        @Autowired
+        private UserRepository userRepository;
 
-    @Autowired
-    private UserService userService;
+        @Autowired
+        private UserService userService;
 
-    // TODO
-    // Implementar criação de gruposi?
-    // - adicionar pessoas em um grupo
-    // - remover pessoas de um grupo
+        public List<Groups> listar() {
+                return groupsRepository.findAll();
+        }
 
-    // Listar todos os grupos na database
-    public List<Groups> listar() {
-        return groupsRepository.findAll();
-    }
+        // Listar as informações de um determinado grupo
+        public GroupMembersDTO buscarMembrosPorGrupo(UUID id) {
 
-    // Listar as informações de um determinado grupo
-    public GroupMembersDTO buscarMembrosPorGrupo(UUID id) {
+                Groups group = groupsRepository.findById(id)
+                                .orElseThrow(() -> new NoSuchElementException("Grupo não encontrado: " + id));
 
-Groups group = groupsRepository.findById(id)
-        .orElseThrow(() -> new NoSuchElementException("Grupo não encontrado: " + id));
+                List<UserDTO> membrosDTO = (group.getMembros() == null)
+                                ? Collections.emptyList()
+                                : group.getMembros()
+                                                .stream()
+                                                .map(UserDTO::new)
+                                                .toList();
 
+                return new GroupMembersDTO(
+                                group.getId(),
+                                group.getNome(),
+                                membrosDTO);
+        }
 
+        // Remover usuário do grupo
+        public Groups removerMembroDoGrupo(UUID grupoId, UUID userId) {
 
-        List<UserDTO> membrosDTO = (group.getMembros() == null)
-                ? Collections.emptyList()
-                : group.getMembros()
-                        .stream()
-                        .map(UserDTO::new)
-                        .toList();
+                Groups grupo = groupsRepository.findById(grupoId)
+                                .orElseThrow(() -> new NoSuchElementException("Grupo não encontrado: " + grupoId));
 
-        return new GroupMembersDTO(
-                group.getId(),
-                group.getNome(),
-                membrosDTO);
-    }
-    // Remover usuário do grupo
-    public void removerMembroDoGrupo(UUID grupoId, UUID userId) {
+                User user = userRepository.findById(userId)
+                                .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado: " + userId));
 
-    Groups grupo = groupsRepository.findById(grupoId)
-            .orElseThrow(() -> new NoSuchElementException("Grupo não encontrado: " + grupoId));
+                boolean removed = grupo.getMembros().remove(user);
 
-    User user = userRepository.findById(userId)
-            .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado: " + userId));
+                if (!removed) {
+                        throw new IllegalStateException("Usuário não faz parte deste grupo");
+                }
+                grupo.getMembros().remove(user);
+                grupo.setQuantidadeDeMembros(grupo.getMembros().size());
+                groupsRepository.save(grupo);
+                return grupo;
 
-    boolean removed = grupo.getMembros().remove(user);
+        }
 
-    if (!removed) {
-        throw new IllegalStateException("Usuário não faz parte deste grupo");
-    }
+        // Adicionar usuário ao grupo
+        public Groups adicionarMembro(UUID grupoId, UUID userId) {
 
-    groupsRepository.save(grupo);
-}
+                // Busca o grupo
+                Groups grupo = groupsRepository.findById(grupoId)
+                                .orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
 
+                // Busca o usuário
+                User user = userRepository.findById(userId)
+                                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+                // Evita duplicar
+                if (grupo.getMembros().contains(user)) {
+                        throw new RuntimeException("Usuário já está no grupo");
+                }
+
+                // Adiciona o membro
+                grupo.getMembros().add(user);
+
+                // Atualiza contador
+                grupo.setQuantidadeDeMembros(grupo.getMembros().size());
+
+                // Salva
+                return groupsRepository.save(grupo);
+        }
 }
