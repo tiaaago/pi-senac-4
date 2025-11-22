@@ -1,0 +1,392 @@
+{
+	"id": "01aa2f75-5d31-4d62-8425-4f7d1c81facd",
+	"name": "StudyBuddy - PI SENAC 4",
+	"timestamp": "2025-11-22T18:50:48.245Z",
+	"collection_id": "38228521-a3a982e7-287d-4247-a800-1cb0f864ef41",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 17,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-11-22T18:50:46.237Z",
+	"totalFail": 3,
+	"results": [
+		{
+			"id": "8773a0e2-2a4e-4d68-b8d6-d16fd99ada1a",
+			"name": "API Status",
+			"url": "http://localhost:8080/actuator/health",
+			"time": 128,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				128
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "587d9427-7927-42f6-ab9b-428bb2867024",
+			"name": "📝 Criar Usuário",
+			"url": "http://localhost:8080/api/users",
+			"time": 184,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 200": false,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				184
+			],
+			"allTests": [
+				{
+					"Status code is 200": false,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "cd35cdc9-613e-41fd-8e04-caccd646638a",
+			"name": "🔐 Login",
+			"url": "http://localhost:8080/api/users/login",
+			"time": 144,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				144
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "5b7a09e2-5763-4c9a-8603-449788100723",
+			"name": "👤 Buscar por Email",
+			"url": "http://localhost:8080/api/users/joao.silva@example.com",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "7d9463c2-7f55-4caf-9a91-fa4e43711e1c",
+			"name": "🔄 Atualizar Usuário",
+			"url": "http://localhost:8080/api/users/joao.silva@example.com",
+			"time": 184,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				184
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "6c61eb63-36bf-4f2c-a13c-930885119bc2",
+			"name": "👥 Listar Todos Usuários",
+			"url": "http://localhost:8080/api/users",
+			"time": 18,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				18
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "69585016-3bfa-4f00-864a-eb3dfd8a24a9",
+			"name": "📊 Perfil Completo por Email",
+			"url": "http://localhost:8080/api/users/perfil/email/joao.silva@example.com",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "724307f0-10a6-4d49-b485-112d4c12fd84",
+			"name": "📋 Listar Todos Grupos",
+			"url": "http://localhost:8080/api/groups",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "00724b78-f46d-4599-a8d9-474f0d786e14",
+			"name": "👥 Listar Membros do Grupo",
+			"url": "http://localhost:8080/api/groups/123e4567-e89b-12d3-a456-426614174000/membros",
+			"time": 41,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code is 200": false,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				41
+			],
+			"allTests": [
+				{
+					"Status code is 200": false,
+					"Response time is acceptable": true
+				}
+			]
+		},
+		{
+			"id": "7ccd6bf8-e54a-4ad4-ba4a-3ff25183d92d",
+			"name": "👤 Badges por Usuário",
+			"url": "http://localhost:8080/api/badges/usuario/d9376f1b-4d23-476f-8007-aa574259fda6",
+			"time": 12,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 200": false,
+				"Response time is acceptable": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Response time is acceptable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status code is 200": false,
+					"Response time is acceptable": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 762,
+	"collection": {
+		"requests": [
+			{
+				"id": "8773a0e2-2a4e-4d68-b8d6-d16fd99ada1a",
+				"method": "GET"
+			},
+			{
+				"id": "587d9427-7927-42f6-ab9b-428bb2867024",
+				"method": "POST"
+			},
+			{
+				"id": "cd35cdc9-613e-41fd-8e04-caccd646638a",
+				"method": "POST"
+			},
+			{
+				"id": "5b7a09e2-5763-4c9a-8603-449788100723",
+				"method": "GET"
+			},
+			{
+				"id": "7d9463c2-7f55-4caf-9a91-fa4e43711e1c",
+				"method": "PUT"
+			},
+			{
+				"id": "6c61eb63-36bf-4f2c-a13c-930885119bc2",
+				"method": "GET"
+			},
+			{
+				"id": "69585016-3bfa-4f00-864a-eb3dfd8a24a9",
+				"method": "GET"
+			},
+			{
+				"id": "724307f0-10a6-4d49-b485-112d4c12fd84",
+				"method": "GET"
+			},
+			{
+				"id": "00724b78-f46d-4599-a8d9-474f0d786e14",
+				"method": "GET"
+			},
+			{
+				"id": "7ccd6bf8-e54a-4ad4-ba4a-3ff25183d92d",
+				"method": "GET"
+			}
+		]
+	}
+}
