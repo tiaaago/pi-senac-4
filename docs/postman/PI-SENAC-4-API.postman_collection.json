@@ -1,0 +1,353 @@
+{
+  "info": {
+    "name": "StudyBuddy - PI SENAC 4",
+    "description": "Collection completa para teste da API StudyBuddy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🚀 Health Check",
+      "item": [
+        {
+          "name": "API Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/actuator/health",
+              "host": ["{{base_url}}"],
+              "path": ["actuator", "health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👤 Users",
+      "item": [
+        {
+          "name": "📝 Criar Usuário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"João Silva\",\n  \"email\": \"joao.silva@example.com\",\n  \"senha\": \"senha123\",\n  \"curso\": \"Engenharia de Software\",\n  \"semestre\": 3,\n  \"xp\": 0\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "🔐 Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"joao.silva@example.com\",\n  \"senha\": \"senha123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "👤 Buscar por Email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/joao.silva@example.com",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "joao.silva@example.com"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "🔄 Atualizar Usuário",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"João Silva Santos\",\n  \"curso\": \"Ciência da Computação\",\n  \"semestre\": 4,\n  \"xp\": 150\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/joao.silva@example.com",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "joao.silva@example.com"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "👥 Listar Todos Usuários",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "📊 Perfil Completo por Email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/perfil/email/joao.silva@example.com",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "perfil", "email", "joao.silva@example.com"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👥 Groups",
+      "item": [
+        {
+          "name": "📋 Listar Todos Grupos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/groups",
+              "host": ["{{base_url}}"],
+              "path": ["api", "groups"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "👥 Listar Membros do Grupo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/groups/{{group_id}}/membros",
+              "host": ["{{base_url}}"],
+              "path": ["api", "groups", "{{group_id}}", "membros"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "➕ Adicionar Membro ao Grupo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/groups/{{group_id}}/membros/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "groups", "{{group_id}}", "membros", "{{user_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "➖ Remover Membro do Grupo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/groups/{{group_id}}/membros/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "groups", "{{group_id}}", "membros", "{{user_id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🏷️ Tags",
+      "item": [
+        {
+          "name": "📝 Criar Tags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pomodoro\": true,\n  \"mapaMental\": false,\n  \"grupoGrande\": true,\n  \"grupoPequeno\": false,\n  \"duo\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tags",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tags"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "🔄 Atualizar Tags",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pomodoro\": false,\n  \"mapaMental\": true,\n  \"grupoGrande\": false,\n  \"grupoPequeno\": true,\n  \"duo\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tags/{{tag_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tags", "{{tag_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "🔍 Buscar Tags por Usuário",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tags/usuario/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tags", "usuario", "{{user_id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🛡️ Badges",
+      "item": [
+        {
+          "name": "📋 Listar Todas Badges",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/badges",
+              "host": ["{{base_url}}"],
+              "path": ["api", "badges"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "🔍 Buscar Badge por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/badges/{{badge_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "badges", "{{badge_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "👤 Badges por Usuário",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/badges/usuario/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "badges", "usuario", "{{user_id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "d9376f1b-4d23-476f-8007-aa574259fda6",
+      "type": "string"
+    },
+    {
+      "key": "group_id",
+      "value": "123e4567-e89b-12d3-a456-426614174000",
+      "type": "string"
+    },
+    {
+      "key": "tag_id",
+      "value": "123e4567-e89b-12d3-a456-426614174003",
+      "type": "string"
+    },
+    {
+      "key": "badge_id",
+      "value": "123e4567-e89b-12d3-a456-426614174004",
+      "type": "string"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "console.log('Iniciando request para: ' + pm.request.url);"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test(\"Status code is 200\", function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "pm.test(\"Response time is acceptable\", function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
+    }
+  ]
+}
