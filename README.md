@@ -1,4 +1,5 @@
 # StudyBuddy - Plataforma Colaborativa de Estudos 👥📚
+![alt text](/docs/assets/screenshots/image-1.png)
 
 ## 📖 Sobre o Projeto
 
@@ -100,13 +101,128 @@ A documentação interativa da API está disponível via Swagger UI:
 
 - Acesse: http://localhost:8080/swagger-ui/index.html
 
+## 🚀 Como Usar - Exemplos Práticos
+### 🔐 Autenticação
+#### Login de Usuário - Request:
+```bash
+{
+  "email": "joao.silva@example.com",
+  "password": "senha123"
+}
+```
+
+#### Login de Usuário - Response:
+```bash
+{
+    "id": "e460536e-5f85-45e0-942f-0b31660c65d1",
+    "email": "joao.silva@example.com",
+    "nome": "João Silva",
+    "senha": "$2a$10$3pTd0xBWJ5Mkoxn2cDey/emL4M6jSxYhCW/znJvsUiCi2xDVseOw6",
+    "curso": "Engenharia de Software",
+    "semestre": 3,
+    "xp": 0,
+    "tags": null,
+    "badges": {
+        "id": "9ffbcd68-6219-4c7f-86cf-42de806b855b",
+        "bronze": true,
+        "prata": false,
+        "ouro": false,
+        "diamante": false
+    }
+```
+### 👥 Gerenciamento de Usuários:
+#### Criar Usuário - Request:
+```bash
+{
+    "nome": "João Silva",
+    "email": "joao.silva@example.com",
+    "senha": "senha123",
+    "curso": "Engenharia de Software",
+    "semestre": 3,
+    "xp": 0
+}
+```
+#### Criar Usuário - Response:
+```bash
+{
+    "id": "e460536e-5f85-45e0-942f-0b31660c65d1",
+    "email": "joao.silva@example.com",
+    "nome": "João Silva",
+    "senha": "$2a$10$3pTd0xBWJ5Mkoxn2cDey/emL4M6jSxYhCW/znJvsUiCi2xDVseOw6",
+    "curso": "Engenharia de Software",
+    "semestre": 3,
+    "xp": 0,
+    "tags": null,
+    "badges": null
+}
+```
+
+## 🧪 Testes Automatizados
+### Collection de Testes
+- **📁 Collection Local**: [PI-SENAC-4-API.postman_collection.json](./docs/postman/PI-SENAC-4-API.postman_collection.json)
+- **🌐 Collection Online**: [Acessar no Postman Cloud](https://dev-t-doido.postman.co/workspace/3fdc408e-a582-429a-87d5-4eb818177c1c/run/38228521-01aa2f75-5d31-4d62-8425-4f7d1c81facd)
+- **📊 Resultados dos Testes**: [StudyBuddy - PI SENAC 4.postman_test_run.json](./docs/postman/StudyBuddy%20-%20PI%20SENAC%204.postman_test_run.json)
+
+### 📊 Status dos Testes
+- ✅ Taxa de Sucesso: 85% (17/20 testes)
+
+- ⚡ Performance: Todos os endpoints respondem em menos de 200ms
+
+- 📅 Última Execução: 22/11/2025
+
+## ✅ Endpoints Validados com Sucesso
+### 🔍 Monitoramento
+- GET /actuator/health - Status da API (128ms)
+### 👥 Gestão de Usuários
+- POST /api/users/login - Autenticação (144ms)
+
+- GET /api/users/{email} - Buscar por email (10ms)
+
+- PUT /api/users/{email} - Atualizar usuário (184ms)
+
+- GET /api/users - Listar todos usuários (18ms)
+
+- GET /api/users/perfil/email/{email} - Perfil completo (28ms)
+### 👨‍👩‍👧‍👦 Gestão de Grupos
+- GET /api/groups - Listar todos grupos (13ms)
+
+### 🎯  Métricas de Performance
+- Tempo Médio de Resposta: 76ms
+
+- Endpoint Mais Rápido: Buscar por Email (10ms)
+
+- Endpoint Mais Lento: Atualizar Usuário (184ms)
+
+- Estabilidade: 100% nos endpoints críticos
+### 📷 Captura de Tela - Teste Postman
+![alt text](/docs/assets/screenshots/image.png)
+
+
 ## 👥 Equipe de Desenvolvimento
-[Colega] - Desenvolvimento Backend/Frontend
 
-[Colega] - Desenvolvimento Frontend/Mobile
+### 🎨 Desenvolvimento Frontend
+<div align="center">
 
-[@MariaCaru] - Desenvolvimento Testes e documentação
+| [<img src="docs/assets/team-photos/Tiago Enzo.jpeg" width="80" style="border-radius:50%"><br>[@tiaaago]<br>Tiago Enzo](https://github.com/tiaaago) | [<img src="docs/assets/team-photos/Natiely.png" width="80" style="border-radius:50%"><br>[@NaahSchmitt]<br>Natiely](https://github.com/NaahSchmitt) | [<img src="docs/assets/team-photos/Otavio Amaral.jpeg" width="80" style="border-radius:50%"><br>[@darokyz]<br>Otavio Amaral](https://github.com/darokyz) |
+|:---:|:---:|:---:|
 
+</div>
+
+### ⚙️ Desenvolvimento Backend
+<div align="center">
+
+| [<img src="docs/assets/team-photos/Ester.jpeg" width="80" style="border-radius:50%"><br>[@EsterHB]<br>Ester Barbosa](https://github.com/EsterHB) | [<img src="docs/assets/team-photos/Thiago.jpg" width="80" style="border-radius:50%"><br>[@thiagolcf]<br>Thiago](https://github.com/thiagolcf) |
+|:---:|:---:|
+
+</div>
+
+### 📋 Testes e Documentação
+<div align="center">
+
+| [<img src="docs/assets/team-photos/Maria.png" width="80" style="border-radius:50%"><br>[@MariaCaru]<br>Maria Carolina](https://github.com/MariaCaru) |
+|:---:|
+
+</div>
 
 ### 📄 Licença
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
