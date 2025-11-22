@@ -41,7 +41,7 @@ public class Groups {
     private String nome;
 
     @Column(name = "quantida_de_membros", nullable = false)
-    private Integer quantidadeDeMembros;
+    private Integer quantidadeDeMembros = 0;
 
     @ManyToMany
     //@JsonManagedReference

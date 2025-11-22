@@ -58,7 +58,18 @@ public class GroupsController {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+        // Evitar duplicação
+        if (grupo.getMembros().contains(user)) {
+            return ResponseEntity.badRequest().body("Usuário já está no grupo!");
+        }
+
+        // Adiciona o membro
         grupo.getMembros().add(user);
+
+        // Atualiza contador de membros (se existir)
+        grupo.setQuantidadeDeMembros(grupo.getMembros().size());
+
+        // Salva
         groupsRepo.save(grupo);
 
         return ResponseEntity.ok("Usuário adicionado ao grupo!");
@@ -77,4 +88,17 @@ public class GroupsController {
         return ResponseEntity.ok("Usuário removido do grupo!");
     }
 
+    // ---------------------------
+    // ADICONAR GRUPO
+    // ---------------------------
+    @PostMapping
+    public Groups criarGrupo(@RequestBody Groups grupo) {
+
+        // garante que o valor nunca será null
+        if (grupo.getQuantidadeDeMembros() == null) {
+            grupo.setQuantidadeDeMembros(0);
+        }
+
+        return groupsRepo.save(grupo);
+    }
 }
