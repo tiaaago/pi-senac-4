@@ -14,8 +14,8 @@ import com.studybuddy.studybuddy_api.models.Groups;
 import com.studybuddy.studybuddy_api.models.User;
 import com.studybuddy.studybuddy_api.repositories.GroupsRepository;
 import com.studybuddy.studybuddy_api.repositories.UserRepository;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.http.HttpStatus;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class GroupsService {
@@ -52,6 +52,7 @@ public class GroupsService {
         }
 
         // Remover usuário do grupo
+        @Transactional
         public Groups removerMembroDoGrupo(UUID grupoId, UUID userId) {
 
                 Groups grupo = groupsRepository.findById(grupoId)
@@ -60,16 +61,21 @@ public class GroupsService {
                 User user = userRepository.findById(userId)
                                 .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado: " + userId));
 
-                boolean removed = grupo.getMembros().remove(user);
+                List<User> membros = grupo.getMembros();
+                if (membros == null || membros.isEmpty()) {
+                        throw new IllegalStateException("Grupo não possui membros");
+                }
+
+                // remove usando comparação por ID (mais seguro do que depender de equals)
+                boolean removed = membros.removeIf(u -> u.getId() != null && u.getId().equals(user.getId()));
 
                 if (!removed) {
                         throw new IllegalStateException("Usuário não faz parte deste grupo");
                 }
-                grupo.getMembros().remove(user);
-                grupo.setQuantidadeDeMembros(grupo.getMembros().size());
-                groupsRepository.save(grupo);
-                return grupo;
 
+                // Atualiza contador e salva
+                grupo.setQuantidadeDeMembros(membros.size());
+                return groupsRepository.save(grupo);
         }
 
         // Adicionar usuário ao grupo

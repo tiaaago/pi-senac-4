@@ -43,13 +43,13 @@ O **StudyBuddy** é uma plataforma inovadora que conecta estudantes para formaç
 ```bash
 # Clone o repositório
 git clone https://github.com/tiaaago/pi-senac-4.git
-cd pi-senac-4/backend
+cd pi-senac-4/backend/api_versao_local
 
 # Execute a aplicação (H2 será iniciado automaticamente)
 mvn spring-boot:run
 
-# Execute o JAR
-java -jar
+# Ou no Windows:
+.\mvnw spring-boot:run
 ```
 
 #### URLs do Backend
