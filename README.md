@@ -1,6 +1,11 @@
 # StudyBuddy - Plataforma Colaborativa de Estudos 👥📚
 ![alt text](/docs/assets/screenshots/image-1.png)
 
+
+* * *
+
+
+![vídeo demonstrativo](projeto_integrador_video.mp4)
 ## 📖 Sobre o Projeto
 
 O **StudyBuddy** é uma plataforma inovadora que conecta estudantes para formação de grupos de estudo colaborativos. A aplicação permite que usuários encontrem parceiros de estudo ideais baseados em suas preferências, matérias e métodos de estudo preferidos.
