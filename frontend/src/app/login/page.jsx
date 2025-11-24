@@ -17,7 +17,7 @@ export default function LoginPage() {
         nome: '',
         email: '',
         curso: '',
-        semestre: undefined,
+        semestre: '1',
         senha: '',
         confirmarSenha: '',
     });
