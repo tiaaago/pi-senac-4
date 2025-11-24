@@ -96,6 +96,9 @@ Para visualizar e gerenciar o banco de dados durante o desenvolvimento:
 
 💡 **Dica:** O H2 é um banco em memória - os dados são resetados quando a aplicação é reiniciada
 
+### 🧩 Diagrama de endidades do banco de dados
+![diagrama de entidades](docs/assets/diagrams/diagrama_de_entidades.png)
+
 ## 📚 Documentação da API
 A documentação interativa da API está disponível via Swagger UI:
 
