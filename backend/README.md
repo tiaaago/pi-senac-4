@@ -212,4 +212,4 @@ A API serve exclusivamente como **núcleo operacional** para usuários e grupos.
 5.  Salva
 
 ## 7 Diagrama de classes
-![Alt text](docs/assets/diagrama.png)
+![Diagrama de classes](docs/assets/diagrama.png)
